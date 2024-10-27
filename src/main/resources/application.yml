@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: kar-outdoor
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 20MB
+springdoc:
+  default-produces-media-type: application/json
+
+server:
+  servlet:
+    context-path: /api/v1
+
+

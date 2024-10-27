@@ -1,0 +1,26 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+
+    <h2>Category: {{ currentCategoryName }}</h2>
+    <hr>
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <!-- loop over the products -->
+        <div class="col-md-3" *ngFor="let product of products">
+          <div class="product-box">
+            <img ngSrc="{{product.imageUrl}}" alt="" width="60" height="50" class="img-responsive"/>
+            <h1>{{ product.name }}</h1>
+            <div class="price"> {{ product.unitPrice | currency : 'USD' }}</div>
+            <a href="#"> Sepete Ekle</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
