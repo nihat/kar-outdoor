@@ -1,0 +1,40 @@
+
+<div class="container-fluid mt-2 mb-2">
+
+    <table class="table table-hover">
+        <thead class="table-dark">
+        <tr>
+            <td></td>
+            <td> Product Name</td>
+            <td> Product Description</td>
+            <td> SKU</td>
+            <td> Unit Price ($)</td>
+            <td> Stock Count</td>
+            <td> Category Id</td>
+            <td> Active</td>
+            <td></td>
+
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let product of products">
+            <td class="align-middle"><img ngSrc="{{product.imageUrl}}" alt="" height="50" width="50"></td>
+            <td class="align-middle">{{ product.name }}</td>
+            <td class="align-middle">{{ product.description }}</td>
+            <td class="align-middle">{{ product.sku }}</td>
+            <td class="align-middle">{{ product.unitPrice | currency : 'USD' }}</td>
+            <td class="align-middle">{{ product.stockCount }}</td>
+            <td class="align-middle">{{ product.categoryId }}</td>
+            <td class="align-middle">{{ product.active }}</td>
+            <td class="align-middle">
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>

@@ -1,0 +1,7 @@
+<form class="form-header" onsubmit="return false;" method="GET">
+  <input #searchInput class="au-input au-input-xl" type="text" name="search"
+         placeholder="Search for data ..." (keyup.enter)="doSearch(searchInput.value)"/>
+  <button class="au-btn-submit" type="submit" (click)="doSearch(searchInput.value)">
+    Search
+  </button>
+</form>
