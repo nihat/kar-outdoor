@@ -1,0 +1,34 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+
+    <h2>Category: {{ currentCategoryName }}</h2>
+    <hr>
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <!-- loop over the products -->
+        <div *ngFor="let  currentProduct of products" class="col-md-3">
+          <div class="product-box">
+            <a routerLink="/products/{{currentProduct.id}}">
+              <img src="{{currentProduct.imageUrl}}" alt="" class="img-responsive"/>
+            </a>
+            <a routerLink="/products/{{currentProduct.id}}">
+              <h1>{{ currentProduct.name }}</h1>
+            </a>
+            <div class="price"> {{ currentProduct.unitPrice | currency : 'USD' }}</div>
+            <a href="#"> Sepete Ekle</a>
+          </div>
+
+        </div>
+
+        <div class="alert alert-warning col-md-12" *ngIf="products?.length == 0" role="alert">
+          Product not found.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

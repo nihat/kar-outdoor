@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+@Configuration
 public class CustomRestDataConfig implements RepositoryRestConfigurer {
 
     private final EntityManager entityManager;
