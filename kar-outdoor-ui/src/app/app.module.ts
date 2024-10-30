@@ -11,9 +11,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {ProductCategoryMenuComponent} from './components/product-category-menu/product-category-menu.component';
 import {SearchComponent} from './components/search/search.component';
 import {ProductDetailComponent} from './components/product-detail/product-detail.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CartStatusComponent} from './components/cart-status/cart-status.component';
+import {CartDetailsComponent} from './component/cart-details/cart-details.component';
 
 const routes: Routes = [
+  {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailComponent},
   {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
@@ -30,7 +33,9 @@ const routes: Routes = [
     ProductListComponent,
     ProductCategoryMenuComponent,
     SearchComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

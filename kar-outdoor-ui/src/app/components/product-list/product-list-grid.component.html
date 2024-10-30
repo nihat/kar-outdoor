@@ -1,13 +1,8 @@
 <div class="main-content">
   <div class="section-content section-content-p30">
-
-    <h2>Category: {{ currentCategoryName }}</h2>
-    <hr>
-
     <div class="container-fluid">
 
       <div class="row">
-
         <!-- loop over the products -->
         <div *ngFor="let  currentProduct of products" class="col-md-3">
           <div class="product-box">
@@ -18,7 +13,7 @@
               <h1>{{ currentProduct.name }}</h1>
             </a>
             <div class="price"> {{ currentProduct.unitPrice | currency : 'USD' }}</div>
-            <a href="#"> Sepete Ekle</a>
+            <button (click)="addToCart(currentProduct)" class="btn btn-primary"  >Add to Cart</button>
           </div>
 
         </div>
@@ -27,26 +22,42 @@
           Product not found.
         </div>
       </div>
+
+      <!-- START FOOTER-->
       <div class="footer-pagination">
         <div class="row">
+          <div class="col-md-6"></div>
+
           <div class="col-md-6">
+            <div class="row">
 
-            <div class="col-md-6">
-              <div class="row">
+              <div class="col-md-9" style="padding-left: 30%">
 
-                <div class="col-md-9" style="padding-left: 30%">
-
-                  <ngb-pagination [(page)]="pageNumber" [pageSize]="pageSize"
-                                  [collectionSize]="totalElements" (pageChange)="listProducts()">
-                  </ngb-pagination>
-                </div>
+                <ngb-pagination [(page)]="pageNumber"
+                                [pageSize]="pageSize"
+                                [maxSize]="5"
+                                [boundaryLinks]="true"
+                                [collectionSize]="totalElements"
+                                (pageChange)="listProducts()">
+                </ngb-pagination>
               </div>
 
+              <div class="col-md-3 mt-2" style="text-align: right">
+
+                <span class="mr-1">Page Size</span>
+                <select #pageSizeSelector (change)="changePageSize(pageSizeSelector.value)">
+                  <option>2</option>
+                  <option selected="true">10</option>
+                  <option>20</option>
+                  <option>30</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
+      <!-- END FOOTER-->
+
     </div>
   </div>
 </div>

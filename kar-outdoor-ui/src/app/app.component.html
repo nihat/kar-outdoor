@@ -3,7 +3,7 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a routerLink ="/products">
+      <a routerLink="/products">
         <img ngSrc="assets/images/logo-menu.png" alt="Kar Outdoor" width="230" height="187" class="img-responsive"
              style="border-radius :6px">
       </a>
@@ -18,14 +18,8 @@
       <div class="section-content section-content-p30">
         <div class="container-fluid">
           <div class="header-wrap">
-           <app-search></app-search>
-            <div class="cart-area d-n">
-              <a href="#">
-                <div class="total">19.22 <span> 2</span></div>
-                <i class="fa fa-shopping-cart"
-                   aria-hidden="true"></i>
-              </a>
-            </div>
+            <app-search></app-search>
+            <app-cart-status></app-cart-status>
           </div>
           <div class="account-wrap"></div>
         </div>
@@ -34,7 +28,7 @@
     <!-- END HEADER DESKTOP-->
 
     <!-- MAIN CONTENT-->
-      <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
     <!-- END MAIN CONTENT-->
   </div>
 </div>

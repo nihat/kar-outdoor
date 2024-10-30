@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getProductsPagination( pageNumber: number, pageSize: number,categoryId: number): Observable<GetResponseProducts> {
+  getProductsPaginate(pageNumber: number, pageSize: number, categoryId: number): Observable<GetResponseProducts> {
     const searchURL = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}&page=${pageNumber}&size=${pageSize}`;
     console.log(searchURL);
     return this.httpClient.get<GetResponseProducts>(searchURL);
@@ -43,6 +43,12 @@ export class ProductService {
     const finalUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}`;
     console.log(finalUrl);
     return this.getProducts(finalUrl);
+  }
+
+  searchProductsPaginate(keyword: string , pageNumber : number , pageSize : number): Observable<GetResponseProducts> {
+    const finalUrl = `${this.baseUrl}/search/findByNameContaining?name=${keyword}&page=${pageNumber}&size=${pageSize}`;
+    console.log(finalUrl);
+    return this.httpClient.get<GetResponseProducts>(finalUrl);
   }
 
 
