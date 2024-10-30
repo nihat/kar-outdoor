@@ -12,8 +12,14 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
+  previousCategoryId: number = 1;
   currentCategoryName: string = "Outdoor Giyim";
   searchMode = false;
+
+  //pagination properties
+  pageNumber = 1;
+  pageSize = 4;
+  totalElements = 0;
 
   constructor(private productService: ProductService,
               private route: ActivatedRoute) {
@@ -42,10 +48,30 @@ export class ProductListComponent implements OnInit {
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
       this.currentCategoryName = this.route.snapshot.paramMap.get('name')!;
     }
-    console.log("currentCategoryId" + this.currentCategoryId);
-    this.productService.getProductsByCategory(this.currentCategoryId).subscribe(
-      result => this.products = result
-    );
+    if (this.previousCategoryId != this.currentCategoryId) {
+      this.pageNumber = 1;
+    }
+    this.previousCategoryId = this.currentCategoryId;
+    this.productService.getProductsPagination(
+      this.pageNumber - 1,
+      this.pageSize,
+      this.currentCategoryId)
+      .subscribe(
+        this.processResult());
+  }
+
+  processResult() {
+    return (data: any) => {
+      console.log(`currentCategoryId= ${this.currentCategoryId} , previousCategoryId= ${this.previousCategoryId}`);
+      console.log("this.pageSize = " + this.pageSize + " this.pageNumber = " + this.pageNumber + " , this.totalElements = " + this.totalElements);
+      console.log(" result.page.size = " + data.page.size);
+      console.log(" result.page.number = " + data.page.number);
+      console.log(" result.page.totalElements = " + data.page.totalElements);
+      this.products = data._embedded.products;
+      this.pageSize = data.page.size;
+      this.pageNumber = data.page.number + 1;
+      this.totalElements = data.page.totalElements;
+    };
   }
 
   handleSearchProducts() {
