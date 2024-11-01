@@ -1,10 +1,11 @@
 import {Component, model, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CartService} from '../../services/cart/cart.service';
 import {KarOutDoorFormService} from '../../services/kar-out-door-form.service';
 import {Country} from '../../common/country';
 import {City} from '../../common/city';
 import {District} from '../../common/district';
+import {CustomValidator} from '../../common/custom-validator';
 
 @Component({
   selector: 'app-checkout',
@@ -27,6 +28,8 @@ export class CheckoutComponent implements OnInit {
   shippingAddressDistricts: District[] = [];
   billingAddressDistricts: District[] = [];
 
+  private emailPattern: string = '^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$';
+
   constructor(private formBuilder: FormBuilder,
               private cartService: CartService,
               private formService: KarOutDoorFormService) {
@@ -39,46 +42,38 @@ export class CheckoutComponent implements OnInit {
     this.checkoutFormGroup = this.formBuilder.group(
       {
         customer: this.formBuilder.group({
-          firstName: [''],
-          lastName: [''],
-          email: ['']
+          firstName: new FormControl('', [Validators.required, Validators.minLength(2), CustomValidator.notOnlyWhiteSpace]),
+          lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+          email: new FormControl('', [Validators.required, Validators.minLength(2), Validators.pattern(this.emailPattern)]),
         }),
         shippingAddress: this.formBuilder.group({
-          country: [''],
-          city: [''],
-          district: [''],
-          street: [''],
-          zipCode: [''],
-          text: [''],
+          country: new FormControl('', [Validators.required]),
+          city: new FormControl('', [Validators.required]),
+          district: new FormControl('', [Validators.required]),
+          street: new FormControl('', [Validators.maxLength(200)]),
+          zipCode: new FormControl('', [Validators.maxLength(10)]),
+          text: new FormControl('', [Validators.maxLength(200)]),
         }),
         billingAddress: this.formBuilder.group({
-          country: [''],
-          city: [''],
-          district: [''],
-          street: [''],
-          zipCode: [''],
-          text: [''],
+          country: new FormControl('', [Validators.required]),
+          city: new FormControl('', [Validators.required]),
+          district: new FormControl('', [Validators.required]),
+          street: new FormControl('', [Validators.maxLength(200)]),
+          zipCode: new FormControl('', [Validators.maxLength(10)]),
+          text: new FormControl('', [Validators.maxLength(200)]),
         }),
         creditCard: this.formBuilder.group({
-          cardType: [''],
-          nameOnCard: [''],
-          cardNumber: [''],
-          securityCode: [''],
-          expirationYear: [''],
-          expirationMonth: [''],
+          cardType: new FormControl('', [Validators.required, Validators.minLength(2)]),
+          nameOnCard: new FormControl('', [Validators.required, Validators.minLength(4)]),
+          cardNumber: new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16) , Validators.pattern('[0-9]{16}')]),
+          securityCode: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3),Validators.pattern('[0-9]{3}')]),
+          expirationYear: new FormControl('', [Validators.required]),
+          expirationMonth: new FormControl('', [Validators.required]),
         }),
       })
 
     this.initializeYears();
     this.initializeCountries();
-  }
-
-  onSubmit() {
-    console.log("onsubmit called");
-    console.log(this.checkoutFormGroup.get('customer')!.value);
-    console.log(this.checkoutFormGroup.get('shippingAddress')!.value);
-    console.log(this.checkoutFormGroup.get('billingAddress')!.value);
-    console.log(this.checkoutFormGroup.get('creditCard')!.value);
   }
 
   changeBillingAddress(event: Event) {
@@ -91,7 +86,6 @@ export class CheckoutComponent implements OnInit {
       this.checkoutFormGroup.controls['billingAddress'].reset();
     }
   }
-
 
   getTotalCounts() {
     let totalQ = 0;
@@ -168,6 +162,38 @@ export class CheckoutComponent implements OnInit {
         data => this.billingAddressDistricts = data
       )
     }
+  }
+
+  get firstName() { return this.checkoutFormGroup.get('customer.firstName'); }
+  get lastName() { return this.checkoutFormGroup.get('customer.lastName'); }
+  get email() { return this.checkoutFormGroup.get('customer.email'); }
+
+  get shippingAddressStreet() { return this.checkoutFormGroup.get('shippingAddress.street'); }
+  get shippingAddressCity() { return this.checkoutFormGroup.get('shippingAddress.city'); }
+  get shippingAddressDistrict() { return this.checkoutFormGroup.get('shippingAddress.district'); }
+  get shippingAddressZipCode() { return this.checkoutFormGroup.get('shippingAddress.zipCode'); }
+  get shippingAddressCountry() { return this.checkoutFormGroup.get('shippingAddress.country'); }
+
+  get billingAddressStreet() { return this.checkoutFormGroup.get('billingAddress.street'); }
+  get billingAddressCity() { return this.checkoutFormGroup.get('billingAddress.city'); }
+  get billingAddressDistrict() { return this.checkoutFormGroup.get('billingAddress.district'); }
+  get billingAddressZipCode() { return this.checkoutFormGroup.get('billingAddress.zipCode'); }
+  get billingAddressCountry() { return this.checkoutFormGroup.get('billingAddress.country'); }
+
+  get creditCardType() { return this.checkoutFormGroup.get('creditCard.cardType'); }
+  get creditCardNameOnCard() { return this.checkoutFormGroup.get('creditCard.nameOnCard'); }
+  get creditCardNumber() { return this.checkoutFormGroup.get('creditCard.cardNumber'); }
+  get creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.securityCode'); }
+  get creditCardExpirationYear() { return this.checkoutFormGroup.get('creditCard.expirationYear'); }
+  get creditCardExpirationMonth() { return this.checkoutFormGroup.get('creditCard.expirationMonth'); }
+
+  onSubmit() {
+    if (this.checkoutFormGroup.invalid) {
+      this.checkoutFormGroup.markAllAsTouched();
+      console.log("this.checkoutFormGroup is invalid)");
+      return;
+    }
+
   }
 
 }
