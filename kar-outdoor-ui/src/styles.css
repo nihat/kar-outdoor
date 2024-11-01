@@ -346,7 +346,7 @@ input.au-input.au-input-xl {
 }
 
 .menu-sidebar .navbar-list .navbar-sub-list li a {
-  padding: 12px 0
+  padding: 12px 0;
 }
 
 .menu-sidebar-content {
@@ -364,7 +364,8 @@ input.au-input.au-input-xl {
   display: block;
   color: #555;
   font-size: 16px;
-  padding: 5px 0
+  padding: 5px 0;
+  text-decoration: none;
 }
 
 .navbar-sidebar .navbar-list li a i {
@@ -589,7 +590,8 @@ input.au-input.au-input-xl {
   position: relative;
   margin-bottom: 45px;
   padding: 50px 20px;
-  border: 3px solid #ccc
+  border: 3px solid #ccc;
+  width : 80%;
 }
 
 .form-area h3 {
@@ -608,9 +610,9 @@ input.au-input.au-input-xl {
 }
 
 .input-space label {
-  padding-left: 31px;
+  padding-left: 20px;
   font-size: 14px;
-  margin-bottom: 50px
+  margin-bottom: 45px
 }
 
 .input-space input[type=text] {
@@ -1013,7 +1015,7 @@ footer ul li {
   }
 
   .main-content.page-m {
-    padding: 10% 0 !important
+    padding: 10% 30% 10% 5%;
   }
 
   .header-mobile .navbar-mobile {

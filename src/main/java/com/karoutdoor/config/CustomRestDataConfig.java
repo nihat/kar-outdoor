@@ -1,7 +1,7 @@
 package com.karoutdoor.config;
 
 
-import com.karoutdoor.entity.Product;
+import com.karoutdoor.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,23 @@ public class CustomRestDataConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
         // disable HTTP methods for Product: PUT, POST and DELETE
-        config.getExposureConfiguration()
-               // .forDomainType(Product.class)
-                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
-                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
+
+        processForDomain(Product.class, config, theUnsupportedActions);
+        processForDomain(ProductCategory.class, config, theUnsupportedActions);
+        processForDomain(User.class, config, theUnsupportedActions);
+        processForDomain(Country.class, config, theUnsupportedActions);
+        processForDomain(City.class, config, theUnsupportedActions);
+        processForDomain(District.class, config, theUnsupportedActions);
 
         // call an internal helper method
         exposeIds(config);
+    }
+
+    private static void processForDomain(Class clazz, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedActions) {
+        config.getExposureConfiguration()
+                .forDomainType(clazz)
+                .withItemExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
+                .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {
