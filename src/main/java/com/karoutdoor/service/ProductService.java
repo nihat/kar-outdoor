@@ -1,8 +1,8 @@
 package com.karoutdoor.service;
 
 
-import com.karoutdoor.model.mapper.ProductMapper;
-import com.karoutdoor.model.response.ProductResponse;
+import com.karoutdoor.mapper.ProductMapper;
+import com.karoutdoor.response.ProductResponse;
 import com.karoutdoor.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

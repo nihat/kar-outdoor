@@ -83,6 +83,7 @@
               <div class="input-space">
                 <select formControlName="country" type="text"
                         (change)="countryChanged('shippingAddress')">
+                  <option >Select country..</option>
                   <option *ngFor="let country of countries" ngValue="{{country.id}}">
                     {{ country.name }}
                   </option>
@@ -104,6 +105,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="city" type="text" (change)="cityChanged('shippingAddress')">
+                  <option >Select city..</option>
                   <option *ngFor="let city of shippingAddressCities" ngValue="{{city.id}}">
                     {{ city.name }}
                 </select>
@@ -123,6 +125,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="district" type="text">
+                  <option >Select district..</option>
                   <option *ngFor="let district of shippingAddressDistricts" ngValue="{{district.id}}">
                     {{ district.name }}
                 </select>
@@ -190,6 +193,7 @@
               <div class="input-space">
                 <select formControlName="country" type="text"
                         (change)="countryChanged('billingAddress')">
+                  <option >Select country..</option>
                   <option *ngFor="let country of countries" ngValue="{{country.id}}">
                     {{ country.name }}
                   </option>
@@ -209,6 +213,7 @@
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="city" type="text" (change)="cityChanged('billingAddress')">
+                  <option >Select city..</option>
                   <option *ngFor="let city of billingAddressCities" ngValue="{{city.id}}">
                     {{ city.name }}
                 </select>
@@ -223,10 +228,11 @@
               </div>
             </div>
 
-            <div class="col-md-2"><label> State </label></div>
+            <div class="col-md-2"><label> District </label></div>
             <div class="col-md-9">
               <div class="input-space">
                 <select formControlName="district" type="text">
+                  <option >Select district..</option>
                   <option *ngFor="let district of billingAddressDistricts" ngValue="{{district.id}}">
                     {{ district.name }}
                 </select>

@@ -1,5 +1,6 @@
 package com.karoutdoor.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,10 +22,17 @@ public class City {
     private String cityCode;
     private Boolean active;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "city")
     private List<District> districts;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+
+    public City(Integer id){
+        this.id = id;
+    }
 }

@@ -1,6 +1,7 @@
 package com.karoutdoor.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,7 +29,15 @@ public class Country {
     private Boolean active;
     private Integer order;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country")
     private List<City> cities;
+
+
+    public Country(Integer id){
+        this.id = id;
+    }
+
+
 
 }

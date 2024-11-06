@@ -16,8 +16,10 @@ import {CartStatusComponent} from './components/cart-status/cart-status.componen
 import {CartDetailsComponent} from './components/cart-details/cart-details.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { SuccessComponent } from './components/checkout/success/success/success.component';
 
 const routes: Routes = [
+  {path: 'checkout/success/:trackingNumber', component: SuccessComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailComponent},
@@ -39,7 +41,8 @@ const routes: Routes = [
     ProductDetailComponent,
     CartStatusComponent,
     CartDetailsComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    SuccessComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

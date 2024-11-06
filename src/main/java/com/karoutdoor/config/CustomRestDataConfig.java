@@ -28,16 +28,16 @@ public class CustomRestDataConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
-        HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
+        HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.DELETE};
 
         // disable HTTP methods for Product: PUT, POST and DELETE
 
-        processForDomain(Product.class, config, theUnsupportedActions);
-        processForDomain(ProductCategory.class, config, theUnsupportedActions);
-        processForDomain(User.class, config, theUnsupportedActions);
-        processForDomain(Country.class, config, theUnsupportedActions);
-        processForDomain(City.class, config, theUnsupportedActions);
-        processForDomain(District.class, config, theUnsupportedActions);
+        List<Class> classList = List.of(Product.class,ProductCategory.class,User.class,Country.class,City.class,District.class
+        , Order.class, OrderItem.class,Customer.class,Address.class);
+
+        classList.forEach(
+               c ->  processForDomain(c ,config,theUnsupportedActions)
+        );
 
         // call an internal helper method
         exposeIds(config);

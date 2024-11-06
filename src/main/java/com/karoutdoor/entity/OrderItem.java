@@ -1,6 +1,9 @@
 package com.karoutdoor.entity;
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,14 +18,22 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Product extends BaseEntityIdLong {
+public class OrderItem extends BaseEntityIdLong {
 
-    private String sku;
-    private String name;
-    private String description;
+    private Integer quantity;
     private BigDecimal unitPrice;
-    private boolean active;
-    private Integer stockCount;
-    private Integer categoryId;
     private String imageUrl;
+    private Long productId;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+
+
+    public BigDecimal calculateTotalPrice(){
+        return unitPrice.multiply(new BigDecimal(quantity));
+    }
+
+
 }

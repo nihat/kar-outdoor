@@ -1,4 +1,4 @@
-package com.karoutdoor.model.response;
+package com.karoutdoor.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

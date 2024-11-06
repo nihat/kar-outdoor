@@ -10,9 +10,11 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Data
@@ -20,7 +22,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class BaseEntity {
+public class BaseEntityIdLong {
 
 
     @Id
@@ -30,17 +32,15 @@ public class BaseEntity {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    private LocalDate createdDate;
-
-    @CreatedDate
-    @Column(nullable = false, insertable = false)
-    private LocalDate updateDate;
+    private LocalDateTime createdDate;
 
     @CreatedBy
-    @Column(nullable = false , updatable = false)
+    @Column(nullable = false, updatable = false)
     private Integer createUser;
 
-    @LastModifiedBy
+    @Column(insertable = false)
+    private LocalDateTime updateDate;
+
     @Column(insertable = false)
     private Integer updateUser;
 }

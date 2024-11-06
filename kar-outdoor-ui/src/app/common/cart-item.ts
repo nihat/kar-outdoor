@@ -1,8 +1,6 @@
 import {Product} from './product';
 
 export class CartItem {
-
-
   id: number;
   name: string;
   unitPrice: number;
@@ -14,6 +12,6 @@ export class CartItem {
     this.name = product.name!;
     this.imageUrl = product.imageUrl!;
     this.unitPrice = product.unitPrice!;
-    this.quantity = 1;
+    this.quantity = 0;
   }
 }

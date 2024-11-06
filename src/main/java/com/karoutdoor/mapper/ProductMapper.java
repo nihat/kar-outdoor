@@ -1,7 +1,7 @@
-package com.karoutdoor.model.mapper;
+package com.karoutdoor.mapper;
 
 import com.karoutdoor.entity.Product;
-import com.karoutdoor.model.response.ProductResponse;
+import com.karoutdoor.response.ProductResponse;
 import org.springframework.stereotype.Service;
 
 @Service
