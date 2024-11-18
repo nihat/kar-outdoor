@@ -300,7 +300,7 @@ export class CheckoutComponent implements OnInit {
     return this.checkoutService.purchase(purchase).subscribe(
       {
         next: response => {
-         this.router.navigateByUrl(`checkout/success/${response.trackingNumber}`);
+          this.success(response);
         },
         error: error => {
           console.log(error);
@@ -310,4 +310,15 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
+  private success(response: any) {
+    this.resetCarts();
+    this.router.navigateByUrl(`checkout/success/${response.trackingNumber}`);
+  }
+
+  private resetCarts() {
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
+    this.checkoutFormGroup.reset();
+  }
 }
