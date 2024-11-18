@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Order extends BaseEntityIdLong {
+public class Order extends BaseEntity {
 
     private String trackingNumber;
     private BigDecimal totalPrice;

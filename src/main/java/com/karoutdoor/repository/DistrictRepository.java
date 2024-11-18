@@ -2,6 +2,7 @@ package com.karoutdoor.repository;
 
 import com.karoutdoor.entity.City;
 import com.karoutdoor.entity.District;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,7 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "districts", path = "districts")
 public interface DistrictRepository extends JpaRepository<District, Integer> {
 
+    @Cacheable("districts")
     @Query("SELECT d from District d where  d.city.id = :cityId")
     List<District> findDistrictsByCityId(@Param("cityId") Integer cityId);
 }

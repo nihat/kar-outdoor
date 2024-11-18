@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class OrderItem extends BaseEntityIdLong {
+public class OrderItem extends BaseEntity {
 
     private Integer quantity;
     private BigDecimal unitPrice;

@@ -1,11 +1,5 @@
 package com.karoutdoor.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+public record PurchaseResponse (String trackingNumber) {
 
-@Data
-@AllArgsConstructor
-public class PurchaseResponse {
-
-    private String trackingNumber;
 }

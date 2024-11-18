@@ -3,6 +3,7 @@ package com.karoutdoor.repository;
 import com.karoutdoor.entity.City;
 import com.karoutdoor.entity.Country;
 import com.karoutdoor.entity.Product;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,8 +18,11 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "cities", path = "cities")
 public interface CityRepository extends JpaRepository<City, Integer> {
 
+    @Cacheable("cities")
     @Query("SELECT city from City city where city.country.id= :countryId")
     List<City> findByCountryId(@Param("countryId") Integer countryId);
+
+
     Page<City> findByNameContaining(@Param("name") String name, Pageable pageable);
 
 }

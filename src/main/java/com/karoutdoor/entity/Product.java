@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Product extends BaseEntityIdLong {
+public class Product extends BaseEntity {
 
     private String sku;
     private String name;

@@ -16,7 +16,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Address extends BaseEntityIdLong {
+public class Address extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "country_id")

@@ -16,7 +16,7 @@ public class ProductService {
 
 
     public ProductResponse getProductById(Long id) {
-        return productRepository.findById(id).map(productMapper::toProductResponse).orElseThrow(() -> new EntityNotFoundException("Book not found by id " + id));
+        return productRepository.findById(id).map(productMapper::toProductResponse).orElseThrow(() -> new EntityNotFoundException("Product not found by id " + id));
     }
 
 }
