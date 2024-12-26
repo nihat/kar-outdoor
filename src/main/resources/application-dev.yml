@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/kar_outdoor?currentSchema=karoutdoordb
-    username: kardbuser
-    password: Eymen@1907
+    username: ******
+    password: *******
     driver-class-name: org.postgresql.Driver
 
   jpa:
