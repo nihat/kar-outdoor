@@ -23,20 +23,39 @@ It offers complete product management (CRUD), cart, and checkout flows on a scal
 
 ---
 
-## 📁 Project Structure (example)
+## 📁 Project Structure 
 
----
 
-## ✅ Prerequisites
+kar-aoutdoor/
+├─ src/ # Spring Boot source (main/test)
+├─ pom.xml
+├─ kar-outdoor-ui/ # Angular 18 frontend
+│ ├─ package.json
+│ ├─ src/
+│ └─ angular.json
+└─ README.md## 
+
+
+✅ Prerequisites
+
 
 - **Java 21**
 - **Maven** 3.9+
 - **Node.js** 18+ (LTS) & **npm**
 - **PostgreSQL** 13+
 
----
 
-## ⚙️ Configuration
+📜 License
+
+This project is licensed under the MIT License
+.
+
+📫 Contact Owner
+
+Nihat Kızıltoprak
+📧 nihat.kiziltoprak@gmail.com
+
+🔗 LinkedIn : https://www.linkedin.com/in/nihatkiziltoprak
 
 Update Spring Boot DB settings in `src/main/resources/application.properties` (or `.yml`):
 
